@@ -48,6 +48,7 @@ namespace Backupex {
                         return false;
                     default:
                     // In any other exception it's safe to retry.
+                        Logger.Error($"An exception has been thrown - {ex.GetType().Name}. Retrying...");
                         return _SendBackup(filePath, filename, retryCount + 1);
                 }
             }
