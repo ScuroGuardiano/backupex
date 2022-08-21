@@ -1,0 +1,5 @@
+.vscode
+backups
+config.json
+bin
+obj
