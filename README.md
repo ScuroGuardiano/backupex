@@ -7,6 +7,9 @@ That's good but if my server would catch fire and burn to the ground so would ba
 So I created this little dotnet program to listen for new backups, wait 'til for last 60 seconds there was no changes to the file and then upload it to Backblaze. So simple.
 
 # How to use it
+You can download for Windows and Linux binaries from releases.  
+Linux binary is self-contained that's why it's so big.
+
 You can compile it from sources, clone this repo and run
 ```sh
 dotnet publish
