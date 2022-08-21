@@ -50,8 +50,17 @@ List<FileSystemWatcher> watchers = ConfigManager.Instance.Config!.DirectoriesToW
 
 
 void OnCreated(FileSystemEventArgs e, string filenamePrefix) {
-    filesToBackup.Add(e.FullPath, new FileToBackup(e.FullPath, filenamePrefix, GetUnixNow()));
-    Logger.Info("Found new backup file {1}", DateTime.Now.ToString(), e.FullPath);
+    FileAttributes fileAttr = File.GetAttributes(e.FullPath);
+    if (fileAttr.HasFlag(FileAttributes.Directory)) {
+        foreach(var file in Directory.GetFiles(e.FullPath)) {
+            filesToBackup.Add(file, new FileToBackup(file, filenamePrefix, GetUnixNow()));
+            Logger.Info("Found new backup file {1}", DateTime.Now.ToString(), file);
+        }
+    }
+    else {
+        filesToBackup.Add(e.FullPath, new FileToBackup(e.FullPath, filenamePrefix, GetUnixNow()));
+        Logger.Info("Found new backup file {1}", DateTime.Now.ToString(), e.FullPath);
+    }
 }
 void OnChanged(object sender, FileSystemEventArgs e) {
     if (e.ChangeType != WatcherChangeTypes.Changed)
