@@ -38,6 +38,7 @@ namespace Backupex {
                 throw;
             }
             catch(Backupex.Backblaze.BadOrExpiredAuthTokenException) {
+                Logger.Error("B2 Client got unauthorized.");
                 return _SendBackup(filePath, filename, retryCount, true);
             }
             catch(Exception ex) {
