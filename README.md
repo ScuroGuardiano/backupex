@@ -14,6 +14,12 @@ You can compile it from sources, clone this repo and run
 ```sh
 dotnet publish
 ```
+to build debug release or
+```sh
+./build.sh
+```
+It will build release binaries for linux and windows and put them into `build` directory.
+
 Then run application, it will generate you following config file:
 ```json
 {

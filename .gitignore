@@ -3,3 +3,4 @@ backups
 config.json
 bin
 obj
+build
